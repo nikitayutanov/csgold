@@ -1,0 +1,249 @@
+:root {
+    --header-height: 75px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #282a36 url("images/main/background.png") center/75px space fixed;
+    
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background: #21222c;
+
+    width: 100%;
+    height: var(--header-height);
+
+    border-bottom: 1px solid;
+    border-image-source: linear-gradient(45deg, rgba(0, 255, 128, 1) 0%, rgba(0, 236, 255, 1) 50%, rgba(0, 78, 255, 1) 100%);
+    border-image-slice: 1;
+}
+
+.header-wrapper {
+    max-width: 1350px;
+    height: 100%;
+
+    margin: 0 auto;
+}
+
+.logo {
+    background: url("images/main/logo.png") center/130px no-repeat;
+
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    width: 100%;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background: #2d303d;
+
+    max-width: 1350px;
+    min-height: calc(100vh - var(--header-height));
+
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* ITEMS */
+
+.item {
+    background: center/cover no-repeat;
+    
+    width: 150px;
+    height: 150px;
+}
+
+.knife, .gloves {
+    display: inline-block;
+
+    width: 140px;
+}
+
+.knife:not(:last-child) {
+    margin-right: -44px;
+}
+
+.gloves {
+    background-size: 105%;
+}
+
+.gloves:not(:last-child) {
+    margin-right: 25px;
+}
+
+.item-link, .block-link {
+    display: block;
+    
+    width: 100%;
+    height: 100%;
+}
+
+/* CASES */
+
+.home .main-wrapper {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.case {
+    background-size: 125%;
+}
+
+/* VISUAL */
+
+.item:hover {
+    animation: scale 0.25s forwards, backlight 0.35s forwards;
+}
+
+@keyframes scale { 
+    100% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes backlight { 
+    100% {
+        filter: drop-shadow(0 8px 15px #36e9a1a1);
+    }
+}
+
+.item:hover::before, .item:hover::after {
+    position: absolute;
+
+    width: 100%;
+    height: 25px;
+
+    font-family: Arial;
+    font-size: 9pt;
+    color: #ffffff;
+    text-align: center;
+    line-height: 20px;
+
+    animation: dropdown 0.25s forwards;
+}
+
+.item:hover::before {
+    content: attr(data-name-before);
+
+    top: 0;
+}
+
+.item:hover::after {
+    content: attr(data-name-after);
+
+    bottom: 0;
+}
+
+
+@keyframes dropdown { 
+    0% {
+        transform: scale(0);
+    }
+}
+
+/* ADAPTIVE */
+
+@media screen and (max-width: 1370px) {
+    .original-finishes .knife { 
+        width: 10.4vw;
+        height: 11.1vw;
+    }
+    
+    
+    .original-finishes .knife:not(:last-child) {
+        margin-right: -3.5vw;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    :root {
+        --header-height: 65px;
+    }
+    
+    .logo {
+        background-size: 120px;
+    }
+
+    .original-finishes .main-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .original-finishes .item-group:not(:last-child) {
+        margin-right: calc(4vw - 40px);
+    }
+
+    .original-finishes .knife {
+        display: block;
+        
+        width: 125px;
+        height: 135px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .chroma-finishes .main-wrapper, .gamma-finishes .main-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chroma-finishes .item-group:not(:last-child),
+    .gamma-finishes .item-group:not(:last-child) {
+        margin-right: calc(4vw - 40px);
+    }
+
+    .chroma-finishes .knife, .gamma-finishes .knife {
+        display: block;
+        
+        width: 125px;
+        height: 135px;
+    }
+}
+
+@media screen and (max-width: 685px) {
+    .gloves:not(:last-child) {
+        margin-right: calc(33vw - 200px);
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .original-finishes:not(.single) .item-group:not(:last-child),
+    .chroma-finishes .item-group:not(:last-child),
+    .gamma-finishes .item-group:not(:last-child) {
+        margin-right: -4.4vw;
+    }
+
+    .original-finishes:not(.single) .knife, .chroma-finishes .knife,
+    .gamma-finishes .knife {
+        width: 23vw;
+        height: 23.3vw;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .gloves {
+        width: 24.5vw;
+        height: 26vw;
+    }
+
+    .gloves:not(:last-child) {
+        margin-right: -10px;
+    }
+}
