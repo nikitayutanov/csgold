@@ -100,9 +100,9 @@ function getPathFrom(itemType, folder, fileName) {
     let path;
 
     if (itemType == 'cases') {
-        path = 'url(/images/cases/' + fileName + '.png)';
+        path = 'url(images/cases/' + fileName + '.png)';
     } else {
-        path = 'url(/images/' + itemType + '/' + folder + '/' + fileName + '.png)';
+        path = 'url(images/' + itemType + '/' + folder + '/' + fileName + '.png)';
     }
 
     return path;
