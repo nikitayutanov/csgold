@@ -1,6 +1,6 @@
 'use strict';
 
-let casesCollection = {
+const casesCollection = {
     defaultName: ['CS:GO Weapon Case', 'eSports 2013 Case',
     'Operation Bravo Case', 'CS:GO Weapon Case 2', 'eSports 2013 Winter Case',
     'Winter Offensive Weapon Case', 'CS:GO Weapon Case 3',
@@ -14,7 +14,7 @@ let casesCollection = {
     'Prisma 2 Case']
 }
 
-let knivesCollection = {
+const knivesCollection = {
     generation: {
         first: {
             defaultName: ['Bayonet', 'Flip Knife', 'Gut Knife', 'Karambit', 'M9 Bayonet'],
@@ -59,7 +59,7 @@ let knivesCollection = {
     }
 }
 
-let glovesCollection = {
+const glovesCollection = {
     generation: {
         first: {
             defaultName: {
