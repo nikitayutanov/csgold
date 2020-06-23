@@ -66,7 +66,7 @@ let glovesCollection = {
                 'Bloodhound Gloves': ['Bronzed', 'Charred', 'Guerrilla', 'Snakebite'],
                 'Driver Gloves': ['Crimson Weave', 'Diamondback', 'Lunar Weave', 'Convoy'],
                 'Hand Wraps': ['Badlands', 'Leather', 'Slaughter', 'Spruce DDPAT'],
-                'Moto Gloves': ['Boom!', 'Coolmint', 'Eclipse', 'Spearmint'],
+                'Moto Gloves': ['Boom!', 'Cool Mint', 'Eclipse', 'Spearmint'],
                 'Specialist Gloves': ['Crimson Kimono', 'Emerald Web', 'Forest DDPAT', 'Foundation'],
                 'Sport Gloves': ['Arid', 'Hedge Maze', 'Pandora\'s Box', 'Superconductor']
             },
