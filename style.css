@@ -11,6 +11,8 @@ body {
     
     margin: 0;
     padding: 0;
+
+    font-family: 'Roboto', Arial, sans-serif;
 }
 
 .header {
@@ -61,7 +63,6 @@ body {
 }
 
 .copyright, .steam-link {
-    font-family: Arial;
     font-size: 9pt;
     color: #ffffff5b;
 }
@@ -97,7 +98,9 @@ main {
 
 .item {
     background: center/cover no-repeat;
-    
+
+    position: relative;
+
     width: 150px;
     height: 150px;
 }
@@ -137,6 +140,8 @@ main {
 
 .case {
     background-size: 125%;
+
+    margin-bottom: 50px;
 }
 
 /* VISUAL */
@@ -157,33 +162,52 @@ main {
     }
 }
 
-.item:hover::before, .item:hover::after {
-    position: absolute;
+.item::before, .item::after {
+    visibility: hidden;
 
-    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    width: 85%;
     height: 25px;
 
-    font-family: Arial;
+    margin: 0 auto;
+
     font-size: 9pt;
-    color: #ffffff;
+    color: #ffffff8c;
     text-align: center;
     line-height: 20px;
-
-    animation: dropdown 0.25s forwards;
 }
 
-.item:hover::before {
+.case::before, .case::after,
+.item:not(.case):hover::before,  .item:not(.case):hover::after {
+    visibility: visible;
+}
+
+.item::before {
     content: attr(data-name-before);
 
     top: 0;
 }
 
-.item:hover::after {
+.item::after {
     content: attr(data-name-after);
 
-    bottom: 0;
+    bottom: -5px;
 }
 
+.case::after {
+    bottom: -8px;
+}
+
+.item:hover::before, .item:hover::after {
+    color: #ffffffd5;
+}
+
+.item:not(.case):hover::before,  .item:not(.case):hover::after {
+    animation: dropdown 0.25s forwards;
+}
 
 @keyframes dropdown { 
     0% {
