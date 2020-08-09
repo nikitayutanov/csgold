@@ -11,7 +11,7 @@ const casesCollection = {
     'Chroma 3 Case', 'Gamma Case', 'Gamma 2 Case', 'Glove Case', 'Spectrum Case',
     'Operation Hydra Case', 'Spectrum 2 Case', 'Clutch Case', 'Horizon Case',
     'Danger Zone Case', 'Prisma Case', 'CS20 Case', 'Shattered Web Case',
-    'Prisma 2 Case']
+    'Prisma 2 Case', 'Fracture Case']
 }
 
 const knivesCollection = {
