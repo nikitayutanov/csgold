@@ -11,7 +11,7 @@ const casesCollection = {
     'Chroma 3 Case', 'Gamma Case', 'Gamma 2 Case', 'Glove Case', 'Spectrum Case',
     'Operation Hydra Case', 'Spectrum 2 Case', 'Clutch Case', 'Horizon Case',
     'Danger Zone Case', 'Prisma Case', 'CS20 Case', 'Shattered Web Case',
-    'Prisma 2 Case', 'Fracture Case']
+    'Prisma 2 Case', 'Fracture Case', 'Operation Broken Fang Case']
 }
 
 const knivesCollection = {
@@ -70,7 +70,7 @@ const glovesCollection = {
                 'Specialist Gloves': ['Crimson Kimono', 'Emerald Web', 'Forest DDPAT', 'Foundation'],
                 'Sport Gloves': ['Arid', 'Hedge Maze', 'Pandora\'s Box', 'Superconductor']
             },
-            folderName: ['bloodhound', 'driver', 'handwraps', 'moto', 'specialist', 'sport']
+            folderName: ['bloodhound', 'driver', 'wraps', 'moto', 'specialist', 'sport']
         },
         second: {
             defaultName: {
@@ -81,7 +81,18 @@ const glovesCollection = {
                 'Sport Gloves': ['Amphibious', 'Bronze Morph', 'Omega', 'Vice'],
                 'Hydra Gloves': ['Case Hardened', 'Emerald', 'Mangrove', 'Rattler']
             },
-            folderName: ['driver', 'handwraps', 'moto', 'specialist', 'sport', 'hydra']
+            folderName: ['driver', 'wraps', 'moto', 'specialist', 'sport', 'hydra']
+        },
+        third: {
+            defaultName: {
+                'Driver Gloves': ['Snow Leopard', 'Queen Jaguar', 'Rezan the Red', 'Black Tie'],
+                'Specialist Gloves': ['Tiger Strike', 'Field Agent', 'Lt. Commander', 'Marble Fade'],
+                'Sport Gloves': ['Slingshot', 'Big Game', 'Nocts', 'Scarlet Shamagh'],
+                'Moto Gloves': ['Finish Line', '3rd Commando Company', 'Smoke Out', 'Blood Pressure'],
+                'Hand Wraps': ['CAUTION!', 'Desert Shamagh', 'Constrictor', 'Giraffe'],
+                'Broken Fang Gloves': ['Yellow-banded', 'Unhinged', 'Needle Point', 'Jade']
+            },
+            folderName: ['driver', 'specialist', 'sport', 'moto', 'wraps', 'fang']
         }
     }
 }
