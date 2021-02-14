@@ -1,10 +1,8 @@
 # csgold
 
-Niche gaming resource that represents gaming case drop summary with simple and intuitive interface accessible at all devices.
+Static website that represents case drop summary with simple and intuitive interface.
 
-Built from scratch using vanilla HTML, CSS and JavaScript.
-
-In the end there is mobile and desktop friendly website with possibility to fast and easy add new items as they come out.
+Mobile and desktop friendly. Built using vanilla HTML, CSS and JavaScript. 
 
 ____
 
