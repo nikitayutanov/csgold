@@ -1,1 +1,10 @@
 @import 'resets';
+
+body {
+  background: #282a36 url(/assets/images/background.png) center/75px fixed;
+}
+
+.container {
+  max-width: 1350px;
+  margin: 0 auto;
+}

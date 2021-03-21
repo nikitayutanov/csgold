@@ -1,0 +1,36 @@
+@import 'assets/variables';
+
+.header {
+  height: $header-height;
+  background-color: #21222c;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-image-source: linear-gradient(
+    45deg,
+    rgba(0, 255, 128, 1) 0%,
+    rgba(0, 236, 255, 1) 50%,
+    rgba(0, 78, 255, 1) 100%
+  );
+  border-image-slice: 1;
+  overflow: hidden;
+
+  &__container {
+    height: 100%;
+  }
+}
+
+.logo {
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+
+  &__image {
+    max-width: 130px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+}

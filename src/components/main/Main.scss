@@ -1,0 +1,10 @@
+@import 'assets/variables';
+
+.main {
+  &__container {
+    min-height: calc(100vh - #{$header-height});
+    padding: 0.75rem;
+    display: flex;
+    background-color: #2d303d;
+  }
+}

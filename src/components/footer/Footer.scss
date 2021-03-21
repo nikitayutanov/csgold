@@ -1,0 +1,13 @@
+.footer {
+  &__container {
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    background-color: #21222c;
+  }
+
+  &__copyright {
+    font-size: 0.75rem;
+    color: #ffffffd5;
+  }
+}
