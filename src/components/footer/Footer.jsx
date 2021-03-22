@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container footer__container">
-        <small class="footer__copyright">
+        <small className="footer__copyright">
           © {year} csgold. All rights reserved
         </small>
       </div>

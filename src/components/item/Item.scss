@@ -1,0 +1,67 @@
+@import 'assets/variables';
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #ffffff8c;
+  transition: 0.25s all;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    color: #ffffffd5;
+    transform: scale(1.15);
+    filter: drop-shadow(0 8px 15px #36e9a1a1);
+  }
+
+  // .list--knives &:not(:nth-child(13n + 1)) .knife__name {
+  //   &--top {
+  //     display: none;
+  //   }
+  // }
+
+  // .list--knives &:nth-child(13n + 1) .knife__name {
+  //   &--bottom {
+  //     display: none;
+  //   }
+  // }
+
+  &__image {
+    width: 100%;
+  }
+}
+
+.case {
+  margin: 2.25rem 0.5rem;
+
+  &__image {
+    max-width: 130px;
+    margin-bottom: 0.25rem;
+  }
+}
+
+.knife {
+  margin-right: -$knives-margin;
+}
+
+.knife,
+.gloves {
+  &__image {
+    max-width: 150px;
+  }
+
+  &__name {
+    position: absolute;
+
+    &--top {
+      top: 0;
+    }
+
+    &--bottom {
+      bottom: 0;
+    }
+  }
+}

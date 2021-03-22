@@ -1,55 +1,75 @@
 import './List.scss';
 import caseImage from 'assets/images/case.png';
 import knifeImage from 'assets/images/knife.png';
+import glovesImage from 'assets/images/gloves.png';
+import Item from 'components/item/Item';
 
-const style = {
-  flex: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(13, 1fr)',
-    marginRight: '44px',
-  },
+const finishes = {
+  original: 13,
+  other: 7,
+  gloves: 4,
 };
-
-const caseItem = (
-  <li className="list__item case">
-    <img src={caseImage} alt="Case" className="list__image case__image" />
-    CS:GO Weapon Case
-  </li>
-);
-
-const knifeItem = (
-  <li className="list__item knife">
-    {/* M9 Bayonet */}
-    <img src={knifeImage} alt="Knife" className="list__image knife__image" />
-    {/* Vanilla */}
-  </li>
-);
 
 const getItems = (type) => {
   const items = [];
-  const amount = type === 'k' ? 65 : 30;
+  let amount;
+  switch (type) {
+    case 'knives':
+      amount = 65;
+      break;
+    case 'gloves':
+      amount = 24;
+      break;
+    default:
+      amount = 30;
+  }
   for (let i = 0; i < amount; i++) {
     switch (type) {
-      case 'k':
-        items[i] = knifeItem;
+      case 'knives':
+        items[i] = (
+          <Item
+            type="knife"
+            topName="M9 Bayonet"
+            bottomName="Vanilla"
+            image={knifeImage}
+          />
+        );
+        break;
+      case 'gloves':
+        items[i] = (
+          <Item
+            type="gloves"
+            topName="Bloodhound Gloves"
+            bottomName="Bronzed"
+            image={glovesImage}
+          />
+        );
         break;
       default:
-        items[i] = caseItem;
+        items[i] = (
+          <Item
+            type="case"
+            bottomName={'CS:GO Weapon Case'}
+            image={caseImage}
+          />
+        );
     }
   }
   return items;
 };
 
-function List() {
+function List(props) {
+  // const { items } = props;
+  const items = 'knives';
+  const finishes = 'original-finishes';
+
   return (
-    <ul className="list" style={style.grid}>
-      {getItems('k')}
+    <ul
+      className={`list ${items}-list ${
+        finishes && `${items}-list--${finishes}`
+      } `}
+    >
+      {getItems(items)}
     </ul>
   );
 }

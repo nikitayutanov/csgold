@@ -5,7 +5,7 @@ function Main() {
   return (
     <main className="main">
       <div className="container main__container">
-        <List />
+        <List items="cases" />
       </div>
     </main>
   );

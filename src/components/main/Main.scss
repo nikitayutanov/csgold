@@ -3,8 +3,8 @@
 .main {
   &__container {
     min-height: calc(100vh - #{$header-height});
-    padding: 0.75rem;
     display: flex;
+    justify-content: center;
     background-color: #2d303d;
   }
 }
