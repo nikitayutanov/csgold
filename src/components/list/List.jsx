@@ -29,9 +29,10 @@ const getItems = (type) => {
         items[i] = (
           <Item
             type="knife"
-            topName="M9 Bayonet"
-            bottomName="Vanilla"
+            name="M9 Bayonet"
+            skin="Vanilla"
             image={knifeImage}
+            isVanilla={i % 13 === 0}
           />
         );
         break;
@@ -39,19 +40,16 @@ const getItems = (type) => {
         items[i] = (
           <Item
             type="gloves"
-            topName="Bloodhound Gloves"
-            bottomName="Bronzed"
+            name="Bloodhound Gloves"
+            skin="Bronzed"
             image={glovesImage}
+            isVanilla={i % 4 === 0}
           />
         );
         break;
       default:
         items[i] = (
-          <Item
-            type="case"
-            bottomName={'CS:GO Weapon Case'}
-            image={caseImage}
-          />
+          <Item type="case" name={'CS:GO Weapon Case'} image={caseImage} />
         );
     }
   }
@@ -60,8 +58,8 @@ const getItems = (type) => {
 
 function List(props) {
   // const { items } = props;
-  const items = 'knives';
-  const finishes = 'original-finishes';
+  const items = 'gloves';
+  // const finishes = 'original-finishes';
 
   return (
     <ul

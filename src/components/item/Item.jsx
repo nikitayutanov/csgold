@@ -1,21 +1,13 @@
 import './Item.scss';
 
 function Item(props) {
-  const { type, topName, bottomName, image, alt } = props;
+  const { type, name, skin, image, alt, isVanilla } = props;
 
   return (
-    <li className={`item ${type}`}>
-      {topName && (
-        <span className={`item__name ${type}__name ${type}__name--top`}>
-          {topName}
-        </span>
-      )}
+    <li className={`item ${type} ${isVanilla && `${type}--vanilla`}`}>
       <img src={image} alt={alt} className={`item__image ${type}__image `} />
-      {bottomName && (
-        <span className={`item__name ${type}__name ${type}__name--bottom`}>
-          {bottomName}
-        </span>
-      )}
+      {name && <span className={`${type}__text ${type}__name`}>{name}</span>}
+      {skin && <span className={`${type}__text ${type}__skin`}>{skin}</span>}
     </li>
   );
 }

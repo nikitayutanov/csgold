@@ -17,18 +17,6 @@
     filter: drop-shadow(0 8px 15px #36e9a1a1);
   }
 
-  // .list--knives &:not(:nth-child(13n + 1)) .knife__name {
-  //   &--top {
-  //     display: none;
-  //   }
-  // }
-
-  // .list--knives &:nth-child(13n + 1) .knife__name {
-  //   &--bottom {
-  //     display: none;
-  //   }
-  // }
-
   &__image {
     width: 100%;
   }
@@ -43,25 +31,46 @@
   }
 }
 
-.knife {
-  margin-right: -$knives-margin;
-}
-
 .knife,
 .gloves {
   &__image {
     max-width: 150px;
   }
 
+  &__text {
+    // position: absolute;
+  }
+}
+
+.knife {
+  margin-right: -$knives-margin;
+
+  &__text {
+    bottom: 0;
+  }
+
+  &--vanilla &__skin,
+  &:not(&--vanilla) &__name {
+    display: none;
+  }
+}
+
+.gloves {
   &__name {
-    position: absolute;
+    bottom: 13%;
+    // left: 0;
+  }
 
-    &--top {
-      top: 0;
-    }
+  &__skin {
+    bottom: 3%;
+    // left: 0;
+  }
 
-    &--bottom {
-      bottom: 0;
-    }
+  // &--vanilla &__name {
+  //   left: 0;
+  // }
+
+  &:not(&--vanilla) &__name {
+    display: none;
   }
 }
