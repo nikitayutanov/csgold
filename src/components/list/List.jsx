@@ -2,13 +2,14 @@ import './List.scss';
 import caseImage from 'assets/images/case.png';
 import knifeImage from 'assets/images/knife.png';
 import glovesImage from 'assets/images/gloves.png';
+import classNames from 'classnames';
 import Item from 'components/item/Item';
 
-const finishes = {
-  original: 13,
-  other: 7,
-  gloves: 4,
-};
+// const finishes = {
+//   original: 13,
+//   other: 7,
+//   gloves: 4,
+// };
 
 const getItems = (type) => {
   const items = [];
@@ -43,7 +44,6 @@ const getItems = (type) => {
             name="Bloodhound Gloves"
             skin="Bronzed"
             image={glovesImage}
-            isVanilla={i % 4 === 0}
           />
         );
         break;
@@ -56,20 +56,17 @@ const getItems = (type) => {
   return items;
 };
 
-function List(props) {
-  // const { items } = props;
-  const items = 'gloves';
-  // const finishes = 'original-finishes';
+function List() {
+  const items = 'knives';
+  const finishes = 'original-finishes';
 
-  return (
-    <ul
-      className={`list ${items}-list ${
-        finishes && `${items}-list--${finishes}`
-      } `}
-    >
-      {getItems(items)}
-    </ul>
-  );
+  const specificList = `${items}-list`;
+  const finishesModifier = `${specificList}--${finishes}`;
+  const className = classNames('list', specificList, {
+    [finishesModifier]: finishes,
+  });
+
+  return <ul className={className}>{getItems(items)}</ul>;
 }
 
 export default List;

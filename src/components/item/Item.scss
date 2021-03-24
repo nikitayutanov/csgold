@@ -20,6 +20,15 @@
   &__image {
     width: 100%;
   }
+
+  &__text {
+    text-align: center;
+  }
+
+  &__name,
+  &__skin {
+    display: block;
+  }
 }
 
 .case {
@@ -38,38 +47,15 @@
   }
 
   &__text {
-    // position: absolute;
+    position: absolute;
+    bottom: 0;
   }
 }
 
 .knife {
   margin-right: -$knives-margin;
 
-  &__text {
-    bottom: 0;
-  }
-
   &--vanilla &__skin,
-  &:not(&--vanilla) &__name {
-    display: none;
-  }
-}
-
-.gloves {
-  &__name {
-    bottom: 13%;
-    // left: 0;
-  }
-
-  &__skin {
-    bottom: 3%;
-    // left: 0;
-  }
-
-  // &--vanilla &__name {
-  //   left: 0;
-  // }
-
   &:not(&--vanilla) &__name {
     display: none;
   }
