@@ -5,7 +5,8 @@ function Main() {
   return (
     <main className="main">
       <div className="container main__container">
-        <List />
+        {/* <List type="cases" /> */}
+        <List type="knives" finishes="original-finishes" />
       </div>
     </main>
   );

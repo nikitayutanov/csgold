@@ -1,7 +1,5 @@
 import './List.scss';
-import caseImage from 'assets/images/case.png';
-import knifeImage from 'assets/images/knife.png';
-import glovesImage from 'assets/images/gloves.png';
+import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import Item from 'components/item/Item';
 
@@ -11,62 +9,91 @@ import Item from 'components/item/Item';
 //   gloves: 4,
 // };
 
-const getItems = (type) => {
-  const items = [];
-  let amount;
-  switch (type) {
-    case 'knives':
-      amount = 65;
-      break;
-    case 'gloves':
-      amount = 24;
-      break;
-    default:
-      amount = 30;
-  }
-  for (let i = 0; i < amount; i++) {
+function List(props) {
+  const { type, finishes } = props;
+
+  const [items, setItems] = useState([]);
+
+  const gistUrl = 'https://gist.githubusercontent.com/nikitayutanov/';
+  const casesJson =
+    'e9b76e5d75293b2051693fac275a9cee/raw/98d25472ad8da8c6d14ca52d764128743d4ba833/csgold-cases-data.json';
+  const knivesJson =
+    '599f3f095371bbd291287894ad8b5678/raw/727fb75289948f3e21430fe452e04c0ac804ac46/csgold-knives-data.json';
+  const glovesJson =
+    '5a943f75ac99edb89d9527a54c67229c/raw/1b78f0c3b4d63c6a599d0ea79c55fc053d323783/csgold-gloves-data.json';
+  const casesUrl = `${gistUrl + casesJson}`;
+  const knivesUrl = `${gistUrl + knivesJson}`;
+  const glovesUrl = `${gistUrl + glovesJson}`;
+
+  const fetchItems = () => {
     switch (type) {
+      case 'cases':
+        fetch(casesUrl)
+          .then((response) => response.json())
+          .then((json) => {
+            const { cases } = json;
+            setItems(cases);
+          });
+        break;
       case 'knives':
-        items[i] = (
-          <Item
-            type="knife"
-            name="M9 Bayonet"
-            skin="Vanilla"
-            image={knifeImage}
-            isVanilla={i % 13 === 0}
-          />
-        );
+        fetch(knivesUrl)
+          .then((response) => response.json())
+          .then((json) => {
+            const { knives } = json;
+            setItems(
+              knives.filter((knife) => {
+                const { name, skin, finish } = knife;
+                return (
+                  (name === 'Bayonet' && finish === 'Original') ||
+                  (name === 'Bayonet' && !skin) ||
+                  (name === 'Flip Knife' && finish === 'Original') ||
+                  (name === 'Flip Knife' && !skin) ||
+                  (name === 'Karambit' && finish === 'Original') ||
+                  (name === 'Karambit' && !skin) ||
+                  (name === 'Gut Knife' && finish === 'Original') ||
+                  (name === 'Gut Knife' && !skin) ||
+                  (name === 'M9 Bayonet' && finish === 'Original') ||
+                  (name === 'M9 Bayonet' && !skin)
+                );
+              })
+            );
+          });
         break;
       case 'gloves':
-        items[i] = (
-          <Item
-            type="gloves"
-            name="Bloodhound Gloves"
-            skin="Bronzed"
-            image={glovesImage}
-          />
-        );
+        fetch(glovesUrl)
+          .then((response) => response.json())
+          .then((json) => {
+            const { gloves } = json;
+            setItems(gloves);
+          });
         break;
-      default:
-        items[i] = (
-          <Item type="case" name={'CS:GO Weapon Case'} image={caseImage} />
-        );
     }
-  }
-  return items;
-};
+  };
 
-function List() {
-  const items = 'knives';
-  const finishes = 'original-finishes';
+  useEffect(() => fetchItems(), []);
 
-  const specificList = `${items}-list`;
+  const specificList = `${type}-list`;
   const finishesModifier = `${specificList}--${finishes}`;
   const className = classNames('list', specificList, {
     [finishesModifier]: finishes,
   });
 
-  return <ul className={className}>{getItems(items)}</ul>;
+  const getItems = () => {
+    return items.map((item) => {
+      const { name, skin, finish, imageUrl } = item;
+      return (
+        <Item
+          type="knife"
+          name={name}
+          skin={skin}
+          imageUrl={imageUrl}
+          isVanilla={finish === 'Vanilla'}
+        />
+      );
+    });
+  };
+
+  return <ul className={className}>{getItems()}</ul>;
 }
 
 export default List;

@@ -2,7 +2,11 @@ import './Item.scss';
 import classNames from 'classnames';
 
 function Item(props) {
-  const { type, name, skin, image, isVanilla } = props;
+  const { type, name, skin, imageUrl, isVanilla } = props;
+
+  const imageHost = 'https://community.akamai.steamstatic.com/economy/image/';
+  const imageSize = type === 'case' ? '250fx200f' : '360fx360f';
+  const image = `${imageHost + imageUrl}/${imageSize}`;
 
   const vanillaModifier = `${type}--vanilla`;
   const itemClassName = classNames('item', type, {
