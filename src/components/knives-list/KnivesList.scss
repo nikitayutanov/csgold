@@ -1,16 +1,5 @@
 @import 'assets/variables';
 
-.list {
-  padding: 0.75rem;
-}
-
-.cases-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-}
-
 .knives-list {
   display: grid;
   row-gap: 1rem;
@@ -23,10 +12,4 @@
   &--other-finishes {
     grid-template-columns: repeat(7, 1fr);
   }
-}
-
-.gloves-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
 }

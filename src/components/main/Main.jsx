@@ -1,12 +1,15 @@
 import './Main.scss';
-import List from 'components/list/List';
+import KnivesList from 'components/knives-list/KnivesList';
+import GlovesList from 'components/gloves-list/GlovesList';
+import CasesList from 'components/cases-list/CasesList';
 
 function Main() {
   return (
     <main className="main">
       <div className="container main__container">
-        {/* <List type="cases" /> */}
-        <List type="knives" finishes="original-finishes" />
+        <CasesList />
+        {/* <KnivesList collection='Spectrum' /> */}
+        {/* <GlovesList collection="Original" /> */}
       </div>
     </main>
   );
