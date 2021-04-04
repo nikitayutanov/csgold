@@ -13,3 +13,9 @@
     grid-template-columns: repeat(7, 1fr);
   }
 }
+
+.gloves-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}

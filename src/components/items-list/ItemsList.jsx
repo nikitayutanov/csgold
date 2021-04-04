@@ -1,49 +1,48 @@
-import './KnivesList.scss';
+import './ItemsList.scss';
 import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import Item from 'components/item/Item';
 
-function KnivesList(props) {
-  const { collection } = props;
+function ItemsList(props) {
+  const { type, collection } = props;
   const [items, setItems] = useState([]);
+  const isKnives = type === 'knives';
 
   useEffect(() => {
-    const fetchKnives = () => {
-      const url =
-        'https://gist.githubusercontent.com/nikitayutanov/599f3f095371bbd291287894ad8b5678/raw/csgold-knives-data.json';
+    const fetchItems = () => {
+      const url = `https://gist.githubusercontent.com/nikitayutanov/599f3f095371bbd291287894ad8b5678/raw/csgold-${type}-data.json`;
 
       fetch(url)
         .then((response) => response.json())
         .then((json) => {
-          const { knives } = json;
+          const key = Object.keys(json)[0];
+          const itemsObj = json[key];
           setItems(
-            knives.filter((knife) => knife.collection.includes(collection))
+            itemsObj.filter((item) => item.collection.includes(collection))
           );
         })
         .catch((err) => console.log(`Something went wrong! ${err}`));
     };
 
-    fetchKnives();
-  }, [collection]);
+    fetchItems();
+  }, [type, collection]);
 
   const finish = collection === 'Original' ? 'original' : 'other';
-  const className = classNames(
-    'list',
-    'knives-list',
-    `knives-list--${finish}-finishes`
-  );
+  const finishesModifier = isKnives ? `knives-list--${finish}-finishes` : null;
+  const className = classNames('list', `${type}-list`, finishesModifier);
 
   const getItems = () => {
+    const itemType = isKnives ? 'knife' : type;
+
     return items.map((item, index) => {
       const { name, skin, imageUrl } = item;
       return (
         <Item
           key={index}
-          type="knife"
+          type={itemType}
           name={name}
           skin={skin}
           imageUrl={imageUrl}
-          isVanilla={skin === 'Default'}
         />
       );
     });
@@ -52,4 +51,4 @@ function KnivesList(props) {
   return <ul className={className}>{getItems()}</ul>;
 }
 
-export default KnivesList;
+export default ItemsList;

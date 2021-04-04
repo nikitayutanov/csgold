@@ -1,9 +1,9 @@
 import './CasesList.scss';
 import { useState, useEffect } from 'react';
-import Item from 'components/item/Item';
+import Case from 'components/case/Case';
 
 function CasesList() {
-  const [items, setItems] = useState([]);
+  const [cases, setCases] = useState([]);
 
   useEffect(() => {
     const fetchCases = () => {
@@ -14,7 +14,7 @@ function CasesList() {
         .then((response) => response.json())
         .then((json) => {
           const { cases } = json;
-          setItems(cases);
+          setCases(cases);
         })
         .catch((err) => console.log(`Something went wrong! ${err}`));
     };
@@ -22,14 +22,14 @@ function CasesList() {
     fetchCases();
   }, []);
 
-  const getItems = () => {
-    return items.map((item, index) => {
-      const { name, imageUrl } = item;
-      return <Item key={index} type="case" name={name} imageUrl={imageUrl} />;
+  const getCases = () => {
+    return cases.map((caseItem, index) => {
+      const { name, imageUrl } = caseItem;
+      return <Case key={index} name={name} imageUrl={imageUrl} />;
     });
   };
 
-  return <ul className="list cases-list">{getItems()}</ul>;
+  return <ul className="list cases-list">{getCases()}</ul>;
 }
 
 export default CasesList;

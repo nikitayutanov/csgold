@@ -1,0 +1,13 @@
+.case {
+  width: 130px;
+  margin: 2.25rem 0.5rem;
+
+  &__image {
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  &__name {
+    text-align: center;
+  }
+}

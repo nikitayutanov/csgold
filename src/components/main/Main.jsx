@@ -1,6 +1,5 @@
 import './Main.scss';
-import KnivesList from 'components/knives-list/KnivesList';
-import GlovesList from 'components/gloves-list/GlovesList';
+import ItemsList from 'components/items-list/ItemsList';
 import CasesList from 'components/cases-list/CasesList';
 
 function Main() {
@@ -8,8 +7,8 @@ function Main() {
     <main className="main">
       <div className="container main__container">
         <CasesList />
-        {/* <KnivesList collection='Spectrum' /> */}
-        {/* <GlovesList collection="Original" /> */}
+        {/* <ItemsList type='knives' collection='Original' /> */}
+        {/* <ItemsList type='gloves' collection='Original' /> */}
       </div>
     </main>
   );

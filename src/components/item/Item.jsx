@@ -2,28 +2,19 @@ import './Item.scss';
 import classNames from 'classnames';
 
 function Item(props) {
-  const { type, name, skin, imageUrl, isVanilla } = props;
+  const { type, name, skin, imageUrl } = props;
 
-  const imageHost = 'https://community.akamai.steamstatic.com/economy/image/';
-  const imageSize = type === 'case' ? '250fx200f' : '360fx360f';
-  const image = `${imageHost + imageUrl}/${imageSize}`;
-
-  const vanillaModifier = `${type}--vanilla`;
-  const itemClassName = classNames('item', type, {
-    [vanillaModifier]: isVanilla,
-  });
-  const imageClassName = classNames('item__image', `${type}__image`);
-  const textClassName = classNames('item__text', `${type}__text`);
-  const nameClassName = classNames('item__name', `${type}__name`);
-  const skinClassName = classNames('item__skin', `${type}__skin`);
+  const image = `https://community.akamai.steamstatic.com/economy/image/${imageUrl}/360fx360f`;
   const alt = classNames(name, skin, 'image');
+  const vanillaModifier = !skin ? `${type}--vanilla` : null;
+  const className = classNames('list__item', 'item', type, vanillaModifier);
 
   return (
-    <li className={itemClassName}>
-      <img src={image} alt={alt} className={imageClassName} />
-      <p className={textClassName}>
-        {name && <span className={nameClassName}>{name}</span>}
-        {skin && <span className={skinClassName}>{skin}</span>}
+    <li className={className}>
+      <img src={image} alt={alt} className={`item__image ${type}__image`} />
+      <p className={`item__text ${type}__text`}>
+        <span className={`item__name ${type}__name`}>{name}</span>
+        {skin && <span className={`item__skin ${type}__skin`}>{skin}</span>}
       </p>
     </li>
   );
