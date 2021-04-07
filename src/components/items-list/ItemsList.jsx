@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Item from 'components/item/Item';
 
 function ItemsList(props) {
-  const { type, collection } = props;
+  const { type, collection, finishes } = props;
   const [items, setItems] = useState([]);
   const isKnives = type === 'knives';
 
@@ -27,7 +27,7 @@ function ItemsList(props) {
     fetchItems();
   }, [type, collection]);
 
-  const finish = collection === 'Original' ? 'original' : 'other';
+  const finish = finishes === 'Original' ? 'original' : 'other';
   const finishesModifier = isKnives ? `knives-list--${finish}-finishes` : null;
   const className = classNames('list', `${type}-list`, finishesModifier);
 

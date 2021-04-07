@@ -2,7 +2,7 @@ import './CasesList.scss';
 import { useState, useEffect } from 'react';
 import Case from 'components/case/Case';
 
-function CasesList() {
+function CasesList({ setList }) {
   const [cases, setCases] = useState([]);
 
   useEffect(() => {
@@ -24,8 +24,18 @@ function CasesList() {
 
   const getCases = () => {
     return cases.map((caseItem, index) => {
-      const { name, imageUrl } = caseItem;
-      return <Case key={index} name={name} imageUrl={imageUrl} />;
+      const { name, imageUrl, type, collection, finishes } = caseItem;
+      return (
+        <Case
+          key={index}
+          name={name}
+          imageUrl={imageUrl}
+          setList={setList}
+          type={type}
+          collection={collection}
+          finishes={finishes}
+        />
+      );
     });
   };
 
