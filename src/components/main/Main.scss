@@ -5,6 +5,7 @@
     min-height: calc(100vh - #{$header-height});
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: #2d303d;
   }
 }
