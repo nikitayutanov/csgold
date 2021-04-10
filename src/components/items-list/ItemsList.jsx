@@ -1,21 +1,21 @@
 import './ItemsList.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import Item from 'components/item/Item';
-import Loader from 'components/loader/Loader';
 
 function ItemsList(props) {
-  const { type, collection, finishes } = props;
+  const { type, collection, finishes, isLoading, setIsLoading } = props;
 
   const [items, setItems] = useState([]);
-  const [loadedImages, setLoadedImages] = useState(0);
+  const loadedImages = useRef(0);
 
-  const isLoading = loadedImages !== items.length;
   const isKnives = type === 'knives';
 
   useEffect(() => {
     const fetchItems = () => {
       const url = `https://gist.githubusercontent.com/nikitayutanov/599f3f095371bbd291287894ad8b5678/raw/csgold-${type}-data.json`;
+
+      setIsLoading(true);
 
       fetch(url)
         .then((response) => response.json())
@@ -30,7 +30,7 @@ function ItemsList(props) {
     };
 
     fetchItems();
-  }, [type, collection]);
+  }, [type, collection, setIsLoading]);
 
   const finish = finishes === 'Original' ? 'original' : 'other';
   const finishesModifier = `knives-list--${finish}-finishes`;
@@ -51,18 +51,15 @@ function ItemsList(props) {
           name={name}
           skin={skin}
           imageUrl={imageUrl}
-          setLoadedImages={setLoadedImages}
+          setIsLoading={setIsLoading}
+          loadedImages={loadedImages}
+          imagesAmount={items.length}
         />
       );
     });
   };
 
-  return (
-    <>
-      {isLoading && <Loader />}
-      <ul className={className}>{getItems()}</ul>
-    </>
-  );
+  return <ul className={className}>{getItems()}</ul>;
 }
 
 export default ItemsList;

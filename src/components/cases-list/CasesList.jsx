@@ -1,19 +1,20 @@
 import './CasesList.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import Case from 'components/case/Case';
-import Loader from 'components/loader/Loader';
 
-function CasesList({ setList }) {
+function CasesList(props) {
+  const { setList, isLoading, setIsLoading } = props;
+
   const [cases, setCases] = useState([]);
-  const [loadedImages, setLoadedImages] = useState(0);
-
-  const isLoading = loadedImages !== cases.length;
+  const loadedImages = useRef(0);
 
   useEffect(() => {
     const fetchCases = () => {
       const url =
         'https://gist.githubusercontent.com/nikitayutanov/e9b76e5d75293b2051693fac275a9cee/raw/csgold-cases-data.json';
+
+      setIsLoading(true);
 
       fetch(url)
         .then((response) => response.json())
@@ -25,7 +26,7 @@ function CasesList({ setList }) {
     };
 
     fetchCases();
-  }, []);
+  }, [setIsLoading]);
 
   const getCases = () => {
     return cases.map((caseItem, index) => {
@@ -39,7 +40,9 @@ function CasesList({ setList }) {
           type={type}
           collection={collection}
           finishes={finishes}
-          setLoadedImages={setLoadedImages}
+          setIsLoading={setIsLoading}
+          loadedImages={loadedImages}
+          imagesAmount={cases.length}
         />
       );
     });
@@ -49,12 +52,7 @@ function CasesList({ setList }) {
     'list--hidden': isLoading,
   });
 
-  return (
-    <>
-      {isLoading && <Loader />}
-      <ul className={className}>{getCases()}</ul>
-    </>
-  );
+  return <ul className={className}>{getCases()}</ul>;
 }
 
 export default CasesList;

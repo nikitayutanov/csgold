@@ -2,7 +2,15 @@ import './Item.scss';
 import classNames from 'classnames';
 
 function Item(props) {
-  const { type, name, skin, imageUrl, setLoadedImages } = props;
+  const {
+    type,
+    name,
+    skin,
+    imageUrl,
+    setIsLoading,
+    loadedImages,
+    imagesAmount,
+  } = props;
 
   const image = `https://community.akamai.steamstatic.com/economy/image/${imageUrl}/360fx360f`;
   const alt = classNames(name, skin, 'image');
@@ -11,7 +19,11 @@ function Item(props) {
   });
 
   const handleLoad = () => {
-    setLoadedImages((prevAmount) => prevAmount + 1);
+    loadedImages.current++;
+
+    if (loadedImages.current === imagesAmount) {
+      setIsLoading(false);
+    }
   };
 
   return (
