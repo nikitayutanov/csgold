@@ -1,9 +1,14 @@
 import './CasesList.scss';
 import { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import Case from 'components/case/Case';
+import Loader from 'components/loader/Loader';
 
 function CasesList({ setList }) {
   const [cases, setCases] = useState([]);
+  const [loadedImages, setLoadedImages] = useState(0);
+
+  const isLoading = loadedImages !== cases.length;
 
   useEffect(() => {
     const fetchCases = () => {
@@ -34,12 +39,22 @@ function CasesList({ setList }) {
           type={type}
           collection={collection}
           finishes={finishes}
+          setLoadedImages={setLoadedImages}
         />
       );
     });
   };
 
-  return <ul className="list cases-list">{getCases()}</ul>;
+  const className = classNames('list', 'cases-list', {
+    'list--hidden': isLoading,
+  });
+
+  return (
+    <>
+      {isLoading && <Loader />}
+      <ul className={className}>{getCases()}</ul>
+    </>
+  );
 }
 
 export default CasesList;

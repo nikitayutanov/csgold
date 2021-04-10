@@ -2,10 +2,15 @@ import './ItemsList.scss';
 import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import Item from 'components/item/Item';
+import Loader from 'components/loader/Loader';
 
 function ItemsList(props) {
   const { type, collection, finishes } = props;
+
   const [items, setItems] = useState([]);
+  const [loadedImages, setLoadedImages] = useState(0);
+
+  const isLoading = loadedImages !== items.length;
   const isKnives = type === 'knives';
 
   useEffect(() => {
@@ -28,8 +33,11 @@ function ItemsList(props) {
   }, [type, collection]);
 
   const finish = finishes === 'Original' ? 'original' : 'other';
-  const finishesModifier = isKnives ? `knives-list--${finish}-finishes` : null;
-  const className = classNames('list', `${type}-list`, finishesModifier);
+  const finishesModifier = `knives-list--${finish}-finishes`;
+  const className = classNames('list', `${type}-list`, {
+    [finishesModifier]: isKnives,
+    'list--hidden': isLoading,
+  });
 
   const getItems = () => {
     const itemType = isKnives ? 'knife' : type;
@@ -43,12 +51,18 @@ function ItemsList(props) {
           name={name}
           skin={skin}
           imageUrl={imageUrl}
+          setLoadedImages={setLoadedImages}
         />
       );
     });
   };
 
-  return <ul className={className}>{getItems()}</ul>;
+  return (
+    <>
+      {isLoading && <Loader />}
+      <ul className={className}>{getItems()}</ul>
+    </>
+  );
 }
 
 export default ItemsList;
