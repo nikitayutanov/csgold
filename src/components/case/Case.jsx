@@ -1,4 +1,5 @@
 import './Case.scss';
+import { Link } from 'react-router-dom';
 
 function Case(props) {
   const {
@@ -34,14 +35,16 @@ function Case(props) {
 
   return (
     <li className="list__item case" onClick={handleClick}>
-      <img
-        src={image}
-        alt={alt}
-        className="case__image"
-        onLoad={handleLoad}
-        onError={handleLoad}
-      />
-      <span className="case__name">{name}</span>
+      <Link to={`/${collection}-${type}`}>
+        <img
+          src={image}
+          alt={alt}
+          className="case__image"
+          onLoad={handleLoad}
+          onError={handleLoad}
+        />
+        <span className="case__name">{name}</span>
+      </Link>
     </li>
   );
 }
