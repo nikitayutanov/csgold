@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Case from 'components/case/Case';
 
 function CasesList(props) {
-  const { setList, isLoading, setIsLoading } = props;
+  const { isLoading, setIsLoading } = props;
 
   const [cases, setCases] = useState([]);
   const loadedImages = useRef(0);
@@ -36,7 +36,6 @@ function CasesList(props) {
           key={index}
           name={name}
           imageUrl={imageUrl}
-          setList={setList}
           type={type}
           collection={collection}
           finishes={finishes}

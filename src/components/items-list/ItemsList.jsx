@@ -1,15 +1,25 @@
 import './ItemsList.scss';
 import { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import Item from 'components/item/Item';
 
+const otherFinishes = ['gamma', 'chroma', 'spectrum', 'prisma'];
+
 function ItemsList(props) {
-  const { type, collection, finishes, isLoading, setIsLoading } = props;
+  const { isLoading, setIsLoading } = props;
 
   const [items, setItems] = useState([]);
   const loadedImages = useRef(0);
+  const { id } = useParams();
+
+  const lowerCaseId = id.toLowerCase(); // cuz url should be case insensitive
+  const splittedId = lowerCaseId.split('-');
+  const [type] = splittedId.splice(splittedId.length - 1, 1);
+  const collection = splittedId.join(' ');
 
   const isKnives = type === 'knives';
+  const isOtherFinishes = otherFinishes.includes(collection);
 
   useEffect(() => {
     const fetchItems = () => {
@@ -23,7 +33,9 @@ function ItemsList(props) {
           const key = Object.keys(json)[0];
           const itemsObj = json[key];
           setItems(
-            itemsObj.filter((item) => item.collection.includes(collection))
+            itemsObj.filter((item) =>
+              item.collection.toLowerCase().includes(collection)
+            )
           );
         })
         .catch((err) => console.log(`Something went wrong! ${err}`));
@@ -32,7 +44,7 @@ function ItemsList(props) {
     fetchItems();
   }, [type, collection, setIsLoading]);
 
-  const finish = finishes === 'Original' ? 'original' : 'other';
+  const finish = isOtherFinishes ? 'other' : 'original';
   const finishesModifier = `knives-list--${finish}-finishes`;
   const className = classNames('list', `${type}-list`, {
     [finishesModifier]: isKnives,

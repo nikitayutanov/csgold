@@ -5,40 +5,24 @@ import ItemsList from 'components/items-list/ItemsList';
 import CasesList from 'components/cases-list/CasesList';
 import Loader from 'components/loader/Loader';
 
-function Main({ list, setList }) {
-  const { type, collection, finishes } = list;
+function Main() {
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(list);
+  const getCasesList = () => {
+    return <CasesList isLoading={isLoading} setIsLoading={setIsLoading} />;
+  };
+
+  const getItemsList = () => {
+    return <ItemsList isLoading={isLoading} setIsLoading={setIsLoading} />;
+  };
 
   return (
     <main className="main">
       <div className="container main__container">
         {isLoading && <Loader />}
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <CasesList
-                setList={setList}
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-              />
-            )}
-          />
-          <Route
-            path={`/${collection}-${type}`}
-            render={() => (
-              <ItemsList
-                type={type}
-                collection={collection}
-                finishes={finishes}
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-              />
-            )}
-          />
+          <Route exact path="/" render={getCasesList} />
+          <Route path="/:id" render={getItemsList} />
         </Switch>
       </div>
     </main>

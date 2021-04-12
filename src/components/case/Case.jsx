@@ -5,10 +5,8 @@ function Case(props) {
   const {
     name,
     imageUrl,
-    setList,
     type,
     collection,
-    finishes,
     setIsLoading,
     loadedImages,
     imagesAmount,
@@ -16,14 +14,7 @@ function Case(props) {
 
   const image = `https://community.akamai.steamstatic.com/economy/image/${imageUrl}/250fx200f`;
   const alt = `${name} image`;
-
-  const handleClick = () => {
-    setList({
-      type,
-      collection,
-      finishes,
-    });
-  };
+  const formattedCollection = collection.toLowerCase().split(' ').join('-');
 
   const handleLoad = () => {
     loadedImages.current++;
@@ -34,8 +25,8 @@ function Case(props) {
   };
 
   return (
-    <li className="list__item case" onClick={handleClick}>
-      <Link to={`/${collection}-${type}`}>
+    <li className="list__item case">
+      <Link to={`/${formattedCollection}-${type}`}>
         <img
           src={image}
           alt={alt}
