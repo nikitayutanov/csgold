@@ -28,17 +28,19 @@ function Item(props) {
 
   return (
     <li className={className}>
-      <img
-        src={image}
-        alt={alt}
-        className={`item__image ${type}__image`}
-        onLoad={handleLoad}
-        onError={handleLoad}
-      />
-      <p className={`item__text ${type}__text`}>
-        <span className={`item__name ${type}__name`}>{name}</span>
-        {skin && <span className={`item__skin ${type}__skin`}>{skin}</span>}
-      </p>
+      <a href="#" className="list__link">
+        <img
+          src={image}
+          alt={alt}
+          className={`item__image ${type}__image`}
+          onLoad={handleLoad}
+          onError={handleLoad}
+        />
+        <p className={`item__text ${type}__text`}>
+          <span className={`item__name ${type}__name`}>{name}</span>
+          {skin && <span className={`item__skin ${type}__skin`}>{skin}</span>}
+        </p>
+      </a>
     </li>
   );
 }

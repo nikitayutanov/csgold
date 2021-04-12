@@ -26,7 +26,7 @@ function Case(props) {
 
   return (
     <li className="list__item case">
-      <Link to={`/${formattedCollection}-${type}`}>
+      <Link to={`/${formattedCollection}-${type}`} className="list__link">
         <img
           src={image}
           alt={alt}
