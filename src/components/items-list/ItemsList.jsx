@@ -54,21 +54,16 @@ function ItemsList(props) {
   const getItems = () => {
     const itemType = isKnives ? 'knife' : type;
 
-    return items.map((item, index) => {
-      const { name, skin, imageUrl } = item;
-      return (
-        <Item
-          key={index}
-          type={itemType}
-          name={name}
-          skin={skin}
-          imageUrl={imageUrl}
-          setIsLoading={setIsLoading}
-          loadedImages={loadedImages}
-          imagesAmount={items.length}
-        />
-      );
-    });
+    return items.map((item, index) => (
+      <Item
+        key={index}
+        item={item}
+        type={itemType}
+        setIsLoading={setIsLoading}
+        loadedImages={loadedImages}
+        imagesAmount={items.length}
+      />
+    ));
   };
 
   return <ul className={className}>{getItems()}</ul>;
