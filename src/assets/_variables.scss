@@ -1,2 +1,10 @@
 $header-height: 75px;
 $knives-margin: 3rem;
+
+@mixin highlight {
+  filter: drop-shadow(0 8px 15px #36e9a1a1);
+}
+
+@mixin transition {
+  transition: 0.25s all;
+}

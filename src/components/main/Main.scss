@@ -15,15 +15,15 @@
   }
 
   &__item {
+    @include transition;
     font-size: 0.8rem;
     color: #ffffff8c;
-    transition: 0.25s all;
     position: relative;
 
     &:hover {
+      @include highlight;
       color: #ffffffd5;
       transform: scale(1.15);
-      filter: drop-shadow(0 8px 15px #36e9a1a1);
       z-index: 1;
     }
   }
