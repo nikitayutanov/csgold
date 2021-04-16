@@ -1,15 +1,25 @@
 import './Item.scss';
 import classNames from 'classnames';
 
+const regularGloves = [
+  'Driver Gloves',
+  'Specialist Gloves',
+  'Moto Gloves',
+  'Driver Gloves',
+  'Sport Gloves',
+];
+
 function Item(props) {
   const { item, type, setIsLoading, loadedImages, imagesAmount } = props;
   const { name, skin, imageUrl, marketName } = item;
+  const isShort = !regularGloves.includes(name);
   const isVanilla = !skin;
 
   const image = `https://community.akamai.steamstatic.com/economy/image/${imageUrl}/360fx360f`;
   const alt = classNames(name, skin, 'image');
   const className = classNames('list__item', 'item', type, {
     'knife--vanilla': isVanilla,
+    'gloves--short': isShort,
   });
 
   const handleLoad = () => {

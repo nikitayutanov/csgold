@@ -1,8 +1,12 @@
 @import 'assets/variables';
 
-.knives-list {
+.items-list {
+  padding: 3rem 0;
   display: grid;
-  row-gap: 1rem;
+  align-items: center;
+}
+
+.knives-list {
   margin-right: $knives-margin;
 
   &--original-finishes {
@@ -15,7 +19,6 @@
 }
 
 .gloves-list {
-  display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  row-gap: 1rem;
 }

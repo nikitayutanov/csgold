@@ -46,7 +46,7 @@ function ItemsList(props) {
 
   const finish = isOtherFinishes ? 'other' : 'original';
   const finishesModifier = `knives-list--${finish}-finishes`;
-  const className = classNames('list', `${type}-list`, {
+  const className = classNames('list', 'items-list', `${type}-list`, {
     [finishesModifier]: isKnives,
     'list--hidden': isLoading,
   });

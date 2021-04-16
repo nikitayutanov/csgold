@@ -3,13 +3,10 @@
 .item {
   &__image {
     width: 100%;
-    max-width: 150px;
   }
 
   &__text {
     text-align: center;
-    position: absolute;
-    bottom: 0;
   }
 
   &__name,
@@ -21,8 +18,30 @@
 .knife {
   margin-right: -$knives-margin;
 
+  &__image {
+    max-width: 150px;
+  }
+
+  &__text {
+    margin-top: -1.5rem;
+  }
+
   &--vanilla &__skin,
   &:not(&--vanilla) &__name {
     display: none;
+  }
+}
+
+.gloves {
+  &__image {
+    max-width: 140px;
+  }
+
+  &__text {
+    margin-top: -1.25rem;
+  }
+
+  &--short &__text {
+    margin-top: -2.25rem;
   }
 }

@@ -1,6 +1,7 @@
 .cases-list {
+  padding: 0.75rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-content: space-evenly;
 }
