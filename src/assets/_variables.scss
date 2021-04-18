@@ -1,9 +1,9 @@
 $header-height: 75px;
 $knives-margin: 3rem;
-$knives-lg-margin: 2.5rem;
+$knives-lg-margin: 1.5rem;
 
 @mixin sm {
-  @media screen and (max-width: 575px) {
+  @media screen and (max-width: 479px) {
     @content;
   }
 }
@@ -38,4 +38,21 @@ $knives-lg-margin: 2.5rem;
 
 @mixin transition {
   transition: 0.25s all;
+}
+
+@mixin grid($num) {
+  grid-template: auto / repeat($num, 1fr);
+
+  @include lg {
+    grid-template: repeat($num, 1fr) / auto;
+  }
+}
+
+@mixin negativeTop($margin) {
+  $negativeMargin: -$margin;
+  margin-top: $negativeMargin;
+
+  @include sm {
+    margin-top: $negativeMargin + 0.75;
+  }
 }

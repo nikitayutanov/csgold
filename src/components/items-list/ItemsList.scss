@@ -1,24 +1,28 @@
 @import 'assets/variables';
 
 .items-list {
-  padding: 3rem 0;
+  padding: 2.5rem 0;
   display: grid;
-  align-items: center;
+  align-content: space-around;
 }
 
 .knives-list {
   margin-right: $knives-margin;
 
+  @include lg {
+    margin-right: $knives-lg-margin;
+    grid-auto-flow: column;
+  }
+
   &--original-finishes {
-    grid-template-columns: repeat(13, 1fr);
+    @include grid(13);
   }
 
   &--other-finishes {
-    grid-template-columns: repeat(7, 1fr);
+    @include grid(7);
   }
 }
 
 .gloves-list {
   grid-template-columns: repeat(4, 1fr);
-  row-gap: 1rem;
 }

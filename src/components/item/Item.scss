@@ -7,6 +7,10 @@
 
   &__text {
     text-align: center;
+
+    @include sm {
+      font-size: 0.6rem;
+    }
   }
 
   &__name,
@@ -18,12 +22,17 @@
 .knife {
   margin-right: -$knives-margin;
 
+  @include lg {
+    margin-right: -$knives-lg-margin;
+  }
+
   &__image {
     max-width: 150px;
   }
 
   &__text {
-    margin-top: -1.5rem;
+    @include negativeTop(1.5rem);
+    width: 62%;
   }
 
   &--vanilla &__skin,
@@ -38,10 +47,15 @@
   }
 
   &__text {
-    margin-top: -1.25rem;
+    @include negativeTop(1.25rem);
   }
 
   &--short &__text {
-    margin-top: -2.25rem;
+    @include negativeTop(1.75rem);
+  }
+
+  $first-in-row: '&:nth-child(4n + 1)';
+  &:not(#{$first-in-row}) &__name {
+    display: none;
   }
 }
