@@ -12,7 +12,7 @@ const regularGloves = [
 function Item(props) {
   const { item, type, setIsLoading, loadedImages, imagesAmount } = props;
   const { name, skin, imageUrl, marketName } = item;
-  const isShort = !regularGloves.includes(name);
+  const isShort = type === 'gloves' && !regularGloves.includes(name);
   const isVanilla = !skin;
 
   const image = `https://community.akamai.steamstatic.com/economy/image/${imageUrl}/360fx360f`;
