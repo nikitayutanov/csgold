@@ -1,15 +1,16 @@
 import './ItemsList.scss';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import Item from 'components/item/Item';
+import Loader from 'components/loader/Loader';
 
 const otherFinishes = ['gamma', 'chroma', 'spectrum', 'prisma'];
 
 function ItemsList(props) {
-  const { isLoading, setIsLoading } = props;
+  const { items, setItems } = props;
 
-  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const loadedImages = useRef(0);
   const { id } = useParams();
 
@@ -18,6 +19,8 @@ function ItemsList(props) {
   const [type] = splittedId.splice(splittedId.length - 1, 1);
   const collection = splittedId.join(' ');
 
+  const currentItems = items[type];
+  const isAnyItems = currentItems?.length; // optional chain, cuz currentItems can be undefined if wrong url
   const isKnives = type === 'knives';
   const isOtherFinishes = otherFinishes.includes(collection);
 
@@ -25,24 +28,19 @@ function ItemsList(props) {
     const fetchItems = () => {
       const url = `https://gist.githubusercontent.com/nikitayutanov/599f3f095371bbd291287894ad8b5678/raw/csgold-${type}-data.json`;
 
-      setIsLoading(true);
-
       fetch(url)
         .then((response) => response.json())
         .then((json) => {
-          const key = Object.keys(json)[0];
-          const itemsObj = json[key];
-          setItems(
-            itemsObj.filter((item) =>
-              item.collection.toLowerCase().includes(collection)
-            )
-          );
+          const itemsObj = json[type];
+          setItems((prevItems) => ({ ...prevItems, [type]: itemsObj }));
         })
         .catch((err) => console.log(`Something went wrong! ${err}`));
     };
 
-    fetchItems();
-  }, [type, collection, setIsLoading]);
+    if (!isAnyItems) {
+      fetchItems();
+    }
+  }, [items, setItems, type, isAnyItems]);
 
   const finish = isOtherFinishes ? 'other' : 'original';
   const finishesModifier = `knives-list--${finish}-finishes`;
@@ -52,21 +50,29 @@ function ItemsList(props) {
   });
 
   const getItems = () => {
+    const filteredItems = currentItems.filter((item) =>
+      item.collection.toLowerCase().includes(collection)
+    );
     const itemType = isKnives ? 'knife' : type;
 
-    return items.map((item, index) => (
+    return filteredItems.map((item, index) => (
       <Item
         key={index}
         item={item}
         type={itemType}
         setIsLoading={setIsLoading}
         loadedImages={loadedImages}
-        imagesAmount={items.length}
+        imagesAmount={filteredItems.length}
       />
     ));
   };
 
-  return <ul className={className}>{getItems()}</ul>;
+  return (
+    <>
+      {isLoading && <Loader />}
+      <ul className={className}>{isAnyItems && getItems()}</ul>
+    </>
+  );
 }
 
 export default ItemsList;
