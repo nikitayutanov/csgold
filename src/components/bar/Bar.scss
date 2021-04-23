@@ -1,0 +1,51 @@
+@import 'assets/variables';
+
+.bar {
+  margin: 0 1rem 2rem auto;
+  display: flex;
+  align-items: center;
+
+  &__label {
+    margin-right: 0.5rem;
+    color: #ffffffd5;
+  }
+
+  &__select {
+    @include transition;
+    margin-right: 1rem;
+    padding: 0.1rem 1rem 0.1rem 0.5rem;
+    background-color: #ffffffd5;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ffffff8c;
+    }
+  }
+
+  &__button {
+    $size: 12px;
+    @include transition;
+    width: 0;
+    height: 0;
+    padding: 0;
+    background-color: transparent;
+    border-bottom: none;
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid #ffffffd5;
+    cursor: pointer;
+
+    &:hover {
+      border-top-color: #ffffff8c;
+    }
+
+    &--descending {
+      margin-right: 0.5rem;
+    }
+
+    &--ascending {
+      transform: rotate(180deg);
+    }
+  }
+}

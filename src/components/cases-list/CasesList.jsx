@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import Case from 'components/case/Case';
 import Loader from 'components/loader/Loader';
+import Bar from 'components/bar/Bar';
 
 function CasesList(props) {
   const { cases, setCases } = props;
@@ -53,10 +54,11 @@ function CasesList(props) {
   });
 
   return (
-    <>
+    <div className="container main__container main__container--cases">
       {isLoading && <Loader />}
+      {!isLoading && <Bar />}
       <ul className={className}>{getCases()}</ul>
-    </>
+    </div>
   );
 }
 

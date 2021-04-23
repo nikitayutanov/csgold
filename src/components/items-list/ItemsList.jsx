@@ -68,10 +68,10 @@ function ItemsList(props) {
   };
 
   return (
-    <>
+    <div className="container main__container main__container--items">
       {isLoading && <Loader />}
       <ul className={className}>{isAnyItems && getItems()}</ul>
-    </>
+    </div>
   );
 }
 

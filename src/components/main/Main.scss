@@ -3,14 +3,20 @@
 .main {
   &__container {
     min-height: calc(100vh - #{$header-height});
-    padding: 0 0.75rem;
+    padding: 2.5rem 0.75rem;
     display: flex;
     justify-content: center;
     background-color: #2d303d;
+
+    &--cases {
+      flex-direction: column;
+    }
   }
 }
 
 .list {
+  align-content: space-evenly;
+
   &--hidden {
     display: none !important;
   }

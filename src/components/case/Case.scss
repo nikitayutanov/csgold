@@ -1,6 +1,8 @@
+@import 'assets/variables';
+
 .case {
   width: 130px;
-  margin: 2.25rem 0.5rem;
+  margin: $case-vertical-margin $case-horizontal-margin;
 
   &__image {
     width: 100%;

@@ -1,6 +1,8 @@
 $header-height: 75px;
 $knives-margin: 3rem;
 $knives-lg-margin: 1.5rem;
+$case-vertical-margin: 2.25rem;
+$case-horizontal-margin: 0.5rem;
 
 @mixin sm {
   @media screen and (max-width: 479px) {

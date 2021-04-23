@@ -1,7 +1,9 @@
+@import 'assets/variables';
+
 .cases-list {
-  padding: 0.75rem 0;
+  margin: -#{$case-vertical-margin} -#{$case-horizontal-margin};
+  flex: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-content: space-evenly;
 }

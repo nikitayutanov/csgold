@@ -18,12 +18,10 @@ function Main() {
 
   return (
     <main className="main">
-      <div className="container main__container">
-        <Switch>
-          <Route exact path="/" render={getCasesList} />
-          <Route path="/:id" render={getItemsList} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" render={getCasesList} />
+        <Route path="/:id" render={getItemsList} />
+      </Switch>
     </main>
   );
 }
