@@ -47,11 +47,11 @@
   }
 
   &__text {
-    @include negativeTop(1.25rem);
+    @include negativeTop(1.4rem);
   }
 
   &--short &__text {
-    @include negativeTop(1.75rem);
+    @include negativeTop(2rem);
   }
 
   $first-in-row: '&:nth-child(4n + 1)';
