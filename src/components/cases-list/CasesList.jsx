@@ -6,7 +6,7 @@ import Loader from 'components/loader/Loader';
 import Bar from 'components/bar/Bar';
 
 function CasesList(props) {
-  const { cases, setCases } = props;
+  const { cases, setCases, sort, setSort } = props;
 
   const [isLoading, setIsLoading] = useState(true);
   const loadedImages = useRef(0);
@@ -30,8 +30,34 @@ function CasesList(props) {
     }
   }, [cases, setCases]);
 
+  const getSortedCases = () => {
+    const sortedCases = [...cases];
+    const { value, isAscending } = sort;
+    const isName = value === 'name';
+    const isDate = value === 'date';
+
+    const byName = (a, b) => {
+      return a.name.localeCompare(b.name);
+    };
+    const byDate = (a, b) => {
+      return a.date - b.date;
+    };
+
+    if (isName && isAscending) {
+      sortedCases.sort(byName);
+    } else if (isName && !isAscending) {
+      sortedCases.sort(byName).reverse();
+    } else if (isDate && isAscending) {
+      sortedCases.sort(byDate);
+    } else if (isDate && !isAscending) {
+      sortedCases.sort(byDate).reverse();
+    }
+
+    return sortedCases;
+  };
+
   const getCases = () => {
-    return cases.map((caseItem, index) => {
+    return getSortedCases().map((caseItem, index) => {
       const { name, imageUrl, type, collection, finishes } = caseItem;
       return (
         <Case
@@ -56,7 +82,7 @@ function CasesList(props) {
   return (
     <div className="container main__container main__container--cases">
       {isLoading && <Loader />}
-      {!isLoading && <Bar />}
+      {!isLoading && <Bar sort={sort} setSort={setSort} />}
       <ul className={className}>{getCases()}</ul>
     </div>
   );

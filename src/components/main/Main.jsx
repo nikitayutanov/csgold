@@ -7,9 +7,17 @@ import CasesList from 'components/cases-list/CasesList';
 function Main() {
   const [cases, setCases] = useState([]);
   const [items, setItems] = useState({});
+  const [sort, setSort] = useState({ value: 'date', isAscending: true });
 
   const getCasesList = () => {
-    return <CasesList cases={cases} setCases={setCases} />;
+    return (
+      <CasesList
+        cases={cases}
+        setCases={setCases}
+        sort={sort}
+        setSort={setSort}
+      />
+    );
   };
 
   const getItemsList = () => {
