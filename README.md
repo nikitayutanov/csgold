@@ -8,4 +8,6 @@ All data (including images from Steam servers) retrived from pre-built JSONs usi
 
 ____
 
-https://csgold.xyz/
+~~https://csgold.xyz/~~ *(22.06.2020 - 18.06.2021)*
+
+https://nikitayutanov.github.io/csgold/
